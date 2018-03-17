@@ -5,9 +5,13 @@ Install_Composer()
 {
     curl -sS --connect-timeout 30 -m 60 https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
     if [ $? -eq 0 ]; then
+    	chmod +x /usr/local/bin/composer
         echo "Composer install successfully."
     else
-    	echo "Composer install failed!"
+    	echo "############################################"
+		echo "Composer install failed!"
+		echo "############################################"
+
         # if [ -s /usr/local/php/bin/php ]; then
         #     wget --prefer-family=IPv4 --no-check-certificate -T 120 -t3 ${Download_Mirror}/web/php/composer/composer.phar -O /usr/local/bin/composer
         #     if [ $? -eq 0 ]; then
@@ -99,6 +103,7 @@ echo "Copy new php configure file..."
 # \cp /usr/devtoin/software/php/etc/php-fpm.conf.default /usr/devtoin/software/php/etc/php-fpm.conf
 # \cp /usr/devtoin/software/php/etc/php-fpm.d/www.conf.default /usr/devtoin/software/php/etc/php-fpm.d/www.conf
 
+# phpINI='/usr/devtoin/software/php/etc/php.ini'
 
 #make test
 cd /usr/devtoin/software/php/etc
@@ -201,11 +206,19 @@ systemctl restart php-fpm.service
 echo "set The environment variable"
 
 #添加php的环境变量
-echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/profile && source /etc/profile
-echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/bashrc && source /etc/bashrc
+# echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/profile && source /etc/profile
+# echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/bashrc && source /etc/bashrc
+
+echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/profile 
+./etc/profile
+echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/bashrc 
+./etc/bashrc
 
 
-#历史笔记
+# PATH=$PATH:/usr/local/php/bin
+# export PATH
+
+############################历史笔记###################################
 # #######设置PHP日志目录和php-fpm的运行进程ID文件（php-fpm.sock）目录
 # mkdir -p /var/log/php-fpm
 # mkdir -p /var/run/php-fpm 
@@ -225,14 +238,17 @@ echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/s
 # php-fpm -t
 # #启动
 # service php-fpm start
+############################历史笔记###################################
 
-#swoole in install 
+
+############################swoole in install ###################################
 echo "################################"
 echo "swoole in install "
 echo "################################"
-wget https://github.com/swoole/swoole-src/archive/v1.10.1.tar.gz
-tar zxvf v1.10.1.tar.gz
-cd swoole-src-1.10.1
+sV='1.10.2'
+wget https://github.com/swoole/swoole-src/archive/v$sV.tar.gz
+tar zxvf v$sV.tar.gz
+cd swoole-src-$sV
 phpize
 ./configure
 
@@ -240,7 +256,7 @@ echo "start make install"
 make && make install 
 echo "end make install"
 
-echo -e "extension=swoole.so\n" >> /usr/devtoin/etc/php.ini
+echo -e "extension=swoole.so\n" >> /usr/devtoin/software/php/etc/php.ini
 #重起php
 systemctl restart php-fpm.service
 #查看swoole 版本命令
