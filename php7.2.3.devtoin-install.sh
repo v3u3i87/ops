@@ -70,7 +70,6 @@ tar zxvf php-$phpVersion.tar.gz && cd php-$phpVersion
 --enable-maintainer-zts \
 --enable-sysvsem \
 --enable-inline-optimization  \
---with-mcrypt \
 --enable-mbregex \
 --enable-mbstring \
 --enable-intl \
@@ -88,8 +87,7 @@ tar zxvf php-$phpVersion.tar.gz && cd php-$phpVersion
 --enable-opcache \
 --with-xsl \
 --with-pear \
---with-ldap=shared \
---without-gdbm \
+--without-gdbm
 
 make && make install
 

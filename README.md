@@ -8,8 +8,6 @@ wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/gitInstall.sh | b
 
 ````
 
-
-
 ## 安装SS, 仅限cenots7 
 
 ````text
