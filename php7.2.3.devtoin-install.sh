@@ -24,7 +24,6 @@ Install_Composer()
     fi
 }
 
-
 mkdir -p /usr/devtoin/dow
 mkdir -p /usr/devtoin/software
 mkdir -p /usr/devtoin/software/log
@@ -179,10 +178,6 @@ echo "############################################"
 mkdir -p /var/run/www/
 chown -R www:www /var/run/www
 
-# echo "Copy php-fpm init.d file..."
-# \cp ${cur_dir}/src/${Php_Ver}/sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
-# chmod +x /etc/init.d/php-fpm
-
 echo "set system start"
 
 cat >/usr/lib/systemd/system/php-fpm.service<<EOF
@@ -209,14 +204,8 @@ echo "set The environment variable"
 # echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/profile && source /etc/profile
 # echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/bashrc && source /etc/bashrc
 
-echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/profile 
-./etc/profile
 echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/sbin:$PATH\n' >> /etc/bashrc 
-./etc/bashrc
 
-
-# PATH=$PATH:/usr/local/php/bin
-# export PATH
 
 ############################历史笔记###################################
 # #######设置PHP日志目录和php-fpm的运行进程ID文件（php-fpm.sock）目录
@@ -260,4 +249,8 @@ echo -e "extension=swoole.so\n" >> /usr/devtoin/software/php/etc/php.ini
 #重起php
 systemctl restart php-fpm.service
 #查看swoole 版本命令
-php --ri swoole
+
+
+echo "Make PHP effective in the environment: source /etc/bashrc"
+echo "Check the swoole: php --ri swoole"
+exit 0
