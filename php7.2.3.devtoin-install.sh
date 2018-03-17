@@ -7,15 +7,16 @@ Install_Composer()
     if [ $? -eq 0 ]; then
         echo "Composer install successfully."
     else
-        if [ -s /usr/local/php/bin/php ]; then
-            wget --prefer-family=IPv4 --no-check-certificate -T 120 -t3 ${Download_Mirror}/web/php/composer/composer.phar -O /usr/local/bin/composer
-            if [ $? -eq 0 ]; then
-                echo "Composer install successfully."
-            else
-                echo "Composer install failed!"
-            fi
-            chmod +x /usr/local/bin/composer
-        fi
+    	echo "Composer install failed!"
+        # if [ -s /usr/local/php/bin/php ]; then
+        #     wget --prefer-family=IPv4 --no-check-certificate -T 120 -t3 ${Download_Mirror}/web/php/composer/composer.phar -O /usr/local/bin/composer
+        #     if [ $? -eq 0 ]; then
+        #         echo "Composer install successfully."
+        #     else
+        #         echo "Composer install failed!"
+        #     fi
+        #     chmod +x /usr/local/bin/composer
+        # fi
     fi
 }
 
@@ -225,24 +226,22 @@ echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/s
 # #启动
 # service php-fpm start
 
-
 #swoole in install 
-
+echo "################################"
+echo "swoole in install "
+echo "################################"
 wget https://github.com/swoole/swoole-src/archive/v1.10.1.tar.gz
-
 tar zxvf v1.10.1.tar.gz
-
 cd swoole-src-1.10.1
 phpize
 ./configure
 
+echo "start make install"
 make && make install 
+echo "end make install"
 
-#最后一行增加
 echo -e "extension=swoole.so\n" >> /usr/devtoin/etc/php.ini
-
 #重起php
 systemctl restart php-fpm.service
-
 #查看swoole 版本命令
 php --ri swoole
