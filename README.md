@@ -17,3 +17,11 @@ wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/gitInstall.sh | b
 wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/ssInstall.sh | bash
 
 ````
+
+
+## 安装php7.2.x, 仅限cenots7 
+```text
+
+wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/php7.2.3.devtoin-install.sh | bash
+
+```

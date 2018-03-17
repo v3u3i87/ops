@@ -14,9 +14,9 @@ pip install shadowsocks
 #读取外网 IP: curl -s ipecho.net/plain;echo
 
 #多用户配置
-touch /etc/shadowsocks.json
+#touch /etc/shadowsocks.json
 
-tee /etc/shadowsocks.json <<-'EOF'
+cat >/etc/shadowsocks.json <<EOF
 {
  "server":"0.0.0.0",
  "local_address": "127.0.0.1",
