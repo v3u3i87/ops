@@ -3,10 +3,10 @@
 cd /usr/local/src
 
 yum -y update
-
 wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/gitInstall.sh | bash && source /etc/bashrc && git --version
 
 yum install python-setuptools && easy_install pip
+pip install --upgrade pip
 pip install git+https://github.com/shadowsocks/shadowsocks.git@master
 pip install shadowsocks
 
@@ -22,7 +22,7 @@ tee /etc/shadowsocks.json <<-'EOF'
  "local_address": "127.0.0.1",
  "local_port":1080,
   "port_password": {
-     "9933": "9933##111",
+     "9933": "9933##111"
  },
  "timeout":300,
  "method":"aes-256-cfb",
@@ -35,4 +35,4 @@ echo -e "/usr/bin/ssserver  -c /etc/shadowsocks.json -d start \n" >> /etc/rc.loc
 
 chmod +x /etc/rc.d/rc.local
 
-ssserver -c /etc/shadowsocks.json -d start
+/usr/bin/ssserver -c /etc/shadowsocks.json -d start
