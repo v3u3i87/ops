@@ -17,10 +17,10 @@ wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/ssInstall.sh | ba
 ````
 
 
-## 安装php7.2.x, 仅限cenots7 
+## 安装php7.2.5, 仅限cenots7 or +
 ```text
 
-wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/php7.2.3.devtoin-install.sh | bash && source /etc/bashrc
+wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/DevtoinInstallPhp.sh | bash && source /etc/bashrc
 
 ```
 
