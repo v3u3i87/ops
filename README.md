@@ -24,19 +24,20 @@ wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/DevtoinInstallPhp
 
 ```
 
-#建议安装screen,避免网络抖动
-yum -y install screen
+# 建议安装screen,避免网络抖动
 
-##创建一个screen
-screen -S logInstall
+	yum -y install screen
 
-##恢复会话
-screen -r logInstall
+	## 创建一个screen
+	
+	screen -S logInstall
 
-##当前进行的会话
-screen -ls
+	## 恢复会话
+	
+	screen -r logInstall
 
-#mac 快捷健
+	## 当前进行的会话
+	
+	screen -ls
 
-##退出会话
-control +a +d 
+	#### mac 快捷健 control +a +d 
