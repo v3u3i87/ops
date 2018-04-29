@@ -44,13 +44,13 @@ yum -y install gcc gcc-c++ make cmake automake autoconf m4 kernel-devel ncurses-
 
 
 #set php version
-phpVersion='7.2.3'
+phpVersion='7.2.5'
 
 wget -O php-$phpVersion.tar.gz http://cn2.php.net/get/php-$phpVersion.tar.gz/from/this/mirror
 
 tar zxvf php-$phpVersion.tar.gz && cd php-$phpVersion
 
-#线程安全模式
+#线程安全模式 --enable-maintainer-zts
 ./configure  --prefix=/usr/devtoin/software/php \
 --with-config-file-path=/usr/devtoin/software/php/etc \
 --with-config-file-scan-dir=/usr/devtoin/software/php/conf.d \
@@ -71,7 +71,6 @@ tar zxvf php-$phpVersion.tar.gz && cd php-$phpVersion
 --disable-rpath \
 --enable-bcmath \
 --enable-shmop \
---enable-maintainer-zts \
 --enable-sysvsem \
 --enable-inline-optimization  \
 --enable-mbregex \
@@ -93,7 +92,9 @@ tar zxvf php-$phpVersion.tar.gz && cd php-$phpVersion
 --with-pear \
 --without-gdbm
 
-make && make install
+make
+echo "=====make install======="
+make install
 
 echo "Copy new php configure file..."
 #mkdir -p /usr/devtoin/software/php/conf.d
@@ -195,8 +196,10 @@ cat >/usr/lib/systemd/system/php-fpm.service<<EOF
 	WantedBy=multi-user.target
 EOF
 
-systemctl enable php-fpm.service
-systemctl restart php-fpm.service
+#默认不启动php-fpm
+#systemctl start php-fpm.service
+#systemctl enable php-fpm.service
+#systemctl restart php-fpm.service
 
 echo "set The environment variable"
 
@@ -234,7 +237,7 @@ echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/s
 echo "################################"
 echo "swoole in install "
 echo "################################"
-sV='1.10.2'
+sV='1.10.4'
 wget https://github.com/swoole/swoole-src/archive/v$sV.tar.gz
 tar zxvf v$sV.tar.gz
 cd swoole-src-$sV
@@ -247,10 +250,9 @@ echo "end make install"
 
 echo -e "extension=swoole.so\n" >> /usr/devtoin/software/php/etc/php.ini
 #重起php
-systemctl restart php-fpm.service
+#systemctl restart php-fpm.service
 #查看swoole 版本命令
 
 
 echo "Make PHP effective in the environment: source /etc/bashrc"
 echo "Check the swoole: php --ri swoole"
-exit 0
