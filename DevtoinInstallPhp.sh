@@ -1,26 +1,24 @@
 #!/bin/bash
 
 
-echo "Install the selection"
-echo "Input (1) install php7.2"
-echo "Input (2) install swoole"
+# echo "Install the selection"
+# echo "Input (1) install php7.2"
+# echo "Input (2) install swoole"
 
-#"xcvu") /Users/z/works/diy-sh/xcvu.sh
 
-read HOSTNAME
+# read HOSTNAME
 
-case $HOSTNAME in
+# case $HOSTNAME in
 
-	"1") Install_PHP72
-;;
-	"2") Install_Swoole
-;;
-	 *) echo "Can't find the related server name"
-	 exit
-;;
-esac
+# 	"1") Install_PHP72
+# ;;
+# 	"2") Install_Swoole
+# ;;
+# 	 *) echo "Can't find the related server name"
+# 	 exit
+# ;;
+# esac
 
-Install_PHP72(){
 
 mkdir -p /usr/devtoin/dow
 mkdir -p /usr/devtoin/software
@@ -230,7 +228,6 @@ echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/s
 # service php-fpm start
 ############################历史笔记###################################
 
-}
 
 
 Install_Swoole()
