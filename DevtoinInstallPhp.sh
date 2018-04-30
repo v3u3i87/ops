@@ -1,28 +1,26 @@
 #!/bin/bash
 
-#安装Composer
-Install_Composer()
-{
-    curl -sS --connect-timeout 30 -m 60 https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-    if [ $? -eq 0 ]; then
-    	chmod +x /usr/local/bin/composer
-        echo "Composer install successfully."
-    else
-    	echo "############################################"
-		echo "Composer install failed!"
-		echo "############################################"
 
-        # if [ -s /usr/local/php/bin/php ]; then
-        #     wget --prefer-family=IPv4 --no-check-certificate -T 120 -t3 ${Download_Mirror}/web/php/composer/composer.phar -O /usr/local/bin/composer
-        #     if [ $? -eq 0 ]; then
-        #         echo "Composer install successfully."
-        #     else
-        #         echo "Composer install failed!"
-        #     fi
-        #     chmod +x /usr/local/bin/composer
-        # fi
-    fi
-}
+echo "Install the selection"
+echo "Input (1) install php7.2"
+echo "Input (2) install swoole"
+
+#"xcvu") /Users/z/works/diy-sh/xcvu.sh
+
+read HOSTNAME
+
+case $HOSTNAME in
+
+	"1") Install_PHP72
+;;
+	"2") Install_Swoole
+;;
+	 *) echo "Can't find the related server name"
+	 exit
+;;
+esac
+
+Install_PHP72(){
 
 mkdir -p /usr/devtoin/dow
 mkdir -p /usr/devtoin/software
@@ -132,7 +130,7 @@ sed -i 's/max_execution_time =.*/max_execution_time = 300/g' /usr/devtoin/softwa
 # opcache.fast_shutdown=1
 # opcache.enable_cli=1
 
-Install_Composer
+# Install_Composer
 
 echo "Install ZendGuardLoader for PHP 7.x..."
 echo "unavailable now."
@@ -232,7 +230,11 @@ echo -e '\nexport PATH=/usr/devtoin/software/php/bin:/usr/devtoin/software/php/s
 # service php-fpm start
 ############################历史笔记###################################
 
+}
 
+
+Install_Swoole()
+{
 ############################swoole in install ###################################
 echo "################################"
 echo "swoole in install "
@@ -253,6 +255,31 @@ echo -e "extension=swoole.so\n" >> /usr/devtoin/software/php/etc/php.ini
 #systemctl restart php-fpm.service
 #查看swoole 版本命令
 
-
 echo "Make PHP effective in the environment: source /etc/bashrc"
 echo "Check the swoole: php --ri swoole"
+}
+
+#安装Composer
+Install_Composer()
+{
+    curl -sS --connect-timeout 30 -m 60 https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    if [ $? -eq 0 ]; then
+    	chmod +x /usr/local/bin/composer
+        echo "Composer install successfully."
+    else
+    	echo "############################################"
+		echo "Composer install failed!"
+		echo "############################################"
+
+        # if [ -s /usr/local/php/bin/php ]; then
+        #     wget --prefer-family=IPv4 --no-check-certificate -T 120 -t3 ${Download_Mirror}/web/php/composer/composer.phar -O /usr/local/bin/composer
+        #     if [ $? -eq 0 ]; then
+        #         echo "Composer install successfully."
+        #     else
+        #         echo "Composer install failed!"
+        #     fi
+        #     chmod +x /usr/local/bin/composer
+        # fi
+    fi
+}
+
