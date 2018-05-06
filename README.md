@@ -24,6 +24,15 @@ wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/DevtoinInstallPhp
 
 ```
 
+## 安装swoole, 仅限cenots7+
+
+````text
+
+wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/installSwoole.sh | bash
+
+````
+
+
 # 建议安装screen,避免网络抖动
 
 	yum -y install screen
