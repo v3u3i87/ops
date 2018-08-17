@@ -14,7 +14,10 @@ Choice installation bbr,Please enter:bbr"
 ################################
 #Get the external network IP
 ################################
-LOCALNETWORKIP=$(curl http://65.49.226.175:9191/reverse/clinet/get/ip?type=ip -s)
+# LOCALNETWORKIP=$(curl http://65.49.226.175:9191/reverse/clinet/get/ip?type=ip -s)
+
+#get the localhost ip
+LOCALNETWORKIP=$(/sbin/ifconfig -a | grep inet | grep -v 127.0.0.1 | grep -v inet6 | awk '{print $2}' | tr -d "addrs")
 
 # echo "#################"
 # echo $LOCALNETWORKIP

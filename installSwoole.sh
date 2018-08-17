@@ -4,10 +4,10 @@
 echo "################################"
 echo "swoole in install "
 echo "################################"
-SWOOLE_VERSION='1.10.4'
-wget https://github.com/swoole/swoole-src/archive/v1.10.4.tar.gz
-tar zxvf v1.10.4.tar.gz
-cd swoole-src-1.10.4
+SWOOLE_VERSION='1.10.5'
+wget https://github.com/swoole/swoole-src/archive/v$SWOOLE_VERSION.tar.gz
+tar zxvf v$SWOOLE_VERSION.tar.gz
+cd swoole-src-$SWOOLE_VERSION
 phpize
 ./configure
 
