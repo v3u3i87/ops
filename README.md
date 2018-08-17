@@ -7,6 +7,10 @@
 
 wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/iptablesForward.sh | bash 
 
+
+wget --no-check-certificate https://raw.githubusercontent.com/v3u3i87/ops/master/iptablesForward.sh && chmod +x iptablesForward.sh && ./iptablesForward.sh
+
+
 ````
 
 

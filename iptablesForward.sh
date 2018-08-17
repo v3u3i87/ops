@@ -1,7 +1,5 @@
 #!/bin/sh
 
-
-
 # echo "This script is restricted to CentOS only."
 
 echo "This script is restricted to CentOS only.
@@ -10,14 +8,8 @@ Choice New installation,Please enter:new
 -----------------------------------------
 Choice Reset IP,Please enter:ip
 -----------------------------------------
-Choice installation bbr,Please enter:bbr
-"
+Choice installation bbr,Please enter:bbr"
 
-
-# get_local_ip(){
-# 	LOCALIP=$(curl http://65.49.226.175:9191/reverse/clinet/get/ip?type=ip -s)
-# 	return $LOCALIP
-# }
 
 ################################
 #Get the external network IP
@@ -41,8 +33,8 @@ echo "################################"
 echo "Forwarding target port"
 echo "################################"
 read PORT
-# echo "############show ip:port###############"
-# echo $RESETIP':'$PORT
+echo "############show ip:port###############"
+echo $RESETIP':'$PORT
 
 ulimit -n 100000
 yum install -y iptables iptables-services 
@@ -63,10 +55,7 @@ service iptables restart
 
 }
 
-
-###
-newInstallation(){
-
+New_Installation(){
 echo "################################"
 echo "Start new installation"
 echo "################################"
@@ -79,8 +68,8 @@ echo "################################"
 echo "Forwarding target port"
 echo "################################"
 read INPORT
-# echo "############show ip:port###############"
-# echo $RESETIP':'$PORT
+echo "############show ip:port###############"
+echo $INRESETIP':'$INPORT
 
 
 systemctl stop firewalld.service
@@ -107,11 +96,12 @@ systemctl disable iptables.service
 }
 
 #####bbr 
-insetll_bbr(){
-	echo "################################"
-	echo "insetll bbr"
-	echo "################################"
-	wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+Insetll_Bbr(){
+echo "################################"
+echo "insetll bbr"
+echo "################################"
+echo "wget"
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
 }
 
 read CHOICE
@@ -120,11 +110,11 @@ case $CHOICE in
 
 	"ip") Reset_IP
 ;;
-    "bbr") insetll_bbr
+	"bbr") Insetll_Bbr
 ;;
-	"new") newInstallation
+	"new") New_Installation
 ;;
-	 *) echo "Can't find the related server name"
-	 exit
+	*) echo "Can't find the related server name"
+	exit
 ;;
 esac
