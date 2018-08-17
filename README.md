@@ -1,5 +1,15 @@
 # ops
 
+
+#设置iptables端口流量转发
+
+````text
+
+wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/iptablesForward.sh | bash 
+
+````
+
+
 ## 安装git2.9.5
 
 ````text
