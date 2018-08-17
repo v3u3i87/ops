@@ -2,18 +2,16 @@
 
 
 
-echo "This script is restricted to CentOS only."
+# echo "This script is restricted to CentOS only."
 
-
-
-# echo "This script is restricted to CentOS only.
-# -----------------------------------------
-# Choice New installation,Please enter:new
-# -----------------------------------------
-# Choice Reset IP,Please enter:ip
-# -----------------------------------------
-# Choice installation bbr,Please enter:bbr
-# "
+echo "This script is restricted to CentOS only.
+-----------------------------------------
+Choice New installation,Please enter:new
+-----------------------------------------
+Choice Reset IP,Please enter:ip
+-----------------------------------------
+Choice installation bbr,Please enter:bbr
+"
 
 
 # get_local_ip(){
@@ -76,11 +74,11 @@ echo "Please set up according to the prompt."
 echo "################################"
 echo "Forwarding target IP"
 echo "################################"
-read RESETIP
+read INRESETIP
 echo "################################"
 echo "Forwarding target port"
 echo "################################"
-read PORT
+read INPORT
 # echo "############show ip:port###############"
 # echo $RESETIP':'$PORT
 
@@ -96,11 +94,11 @@ sysctl -p
 
 iptables -F && iptables -F -t nat && iptables -X
 
-iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $RESETIP:$PORT
-iptables -t nat -A POSTROUTING -p tcp -d $RESETIP --dport $PORT -j SNAT --to-source $LOCALNETWORKIP
+iptables -t nat -A PREROUTING -p tcp --dport $INPORT -j DNAT --to-destination $INRESETIP:$INPORT
+iptables -t nat -A POSTROUTING -p tcp -d $INRESETIP --dport $INPORT -j SNAT --to-source $LOCALNETWORKIP
 
-iptables -t nat -A PREROUTING -p udp --dport $PORT -j DNAT --to-destination $RESETIP:$PORT
-iptables -t nat -A POSTROUTING -p udp -d $RESETIP --dport $PORT -j SNAT --to-source $LOCALNETWORKIP
+iptables -t nat -A PREROUTING -p udp --dport $INPORT -j DNAT --to-destination $INRESETIP:$INPORT
+iptables -t nat -A POSTROUTING -p udp -d $INRESETIP --dport $INPORT -j SNAT --to-source $LOCALNETWORKIP
 
 service iptables save && service iptables restart
 systemctl enable iptables.service 
