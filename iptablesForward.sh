@@ -1,6 +1,12 @@
 #!/bin/sh
 
 echo 'This script is restricted to CentOS only.'
+echo "-----------------------------------------"
+echo "Choice New installation,Please enter:new"
+echo "-----------------------------------------"
+echo "Choice Reset IP,Please enter:ip"
+echo "-----------------------------------------"
+echo "Choice installation bbr,Please enter:bbr"
 
 # get_local_ip(){
 # 	LOCALIP=$(curl http://65.49.226.175:9191/reverse/clinet/get/ip?type=ip -s)
