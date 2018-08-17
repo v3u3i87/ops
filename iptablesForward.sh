@@ -1,27 +1,14 @@
 #!/bin/sh
 
-echo 'This script is restricted to CentOS only.'
-echo "-----------------------------------------"
-echo "Choice New installation,Please enter:new"
-echo "-----------------------------------------"
-echo "Choice Reset IP,Please enter:ip"
-echo "-----------------------------------------"
-echo "Choice installation bbr,Please enter:bbr"
+echo "This script is restricted to CentOS only.
+-----------------------------------------
+Choice New installation,Please enter:new
+-----------------------------------------
+Choice Reset IP,Please enter:ip
+-----------------------------------------
+Choice installation bbr,Please enter:bbr
+"
 
-read CHOICE
-
-case $CHOICE in
-
-	"ip") Reset_IP
-;;
-    "bbr") insetll_bbr
-;;
-	"new") newInstallation
-;;
-	 *) echo "Can't find the related server name"
-	 exit
-;;
-esac
 
 # get_local_ip(){
 # 	LOCALIP=$(curl http://65.49.226.175:9191/reverse/clinet/get/ip?type=ip -s)
@@ -122,3 +109,18 @@ insetll_bbr(){
 	echo "################################"
 	wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
 }
+
+read CHOICE
+
+case $CHOICE in
+
+	"ip") Reset_IP
+;;
+    "bbr") insetll_bbr
+;;
+	"new") newInstallation
+;;
+	 *) echo "Can't find the related server name"
+	 exit
+;;
+esac
