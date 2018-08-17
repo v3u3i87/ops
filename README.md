@@ -1,4 +1,4 @@
-# ops
+# ops 仅限cenots7+
 
 
 ## 设置iptables端口流量转发
@@ -22,7 +22,7 @@ wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/gitInstall.sh | b
 
 ````
 
-## 安装SS, 仅限cenots7 
+## 安装SS
 
 ````text
 
@@ -31,14 +31,14 @@ wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/ssInstall.sh | ba
 ````
 
 
-## 安装php7.2.5, 仅限cenots7 or +
+## 安装php7.2.5
 ```text
 
 wget -qO- https://raw.githubusercontent.com/v3u3i87/ops/master/DevtoinInstallPhp.sh | bash && source /etc/bashrc
 
 ```
 
-## 安装swoole, 仅限cenots7+
+## 安装swoole
 
 ````text
 
