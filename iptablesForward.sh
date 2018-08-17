@@ -1,13 +1,19 @@
 #!/bin/sh
 
-echo "This script is restricted to CentOS only.
------------------------------------------
-Choice New installation,Please enter:new
------------------------------------------
-Choice Reset IP,Please enter:ip
------------------------------------------
-Choice installation bbr,Please enter:bbr
-"
+
+
+echo "This script is restricted to CentOS only."
+
+
+
+# echo "This script is restricted to CentOS only.
+# -----------------------------------------
+# Choice New installation,Please enter:new
+# -----------------------------------------
+# Choice Reset IP,Please enter:ip
+# -----------------------------------------
+# Choice installation bbr,Please enter:bbr
+# "
 
 
 # get_local_ip(){
